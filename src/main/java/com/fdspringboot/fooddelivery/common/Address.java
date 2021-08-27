@@ -13,10 +13,6 @@ public class Address {
     private String city;
     private String street;
 
-    //@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //@JoinColumn(name = "seller_id", nullable = false)
-    //private SellerRegistration sellerRegistration;
-
     public Long getAddressId() {
         return addressId;
     }
