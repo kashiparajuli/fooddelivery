@@ -2,29 +2,39 @@ package com.fdspringboot.fooddelivery.registration;
 
 import com.fdspringboot.fooddelivery.common.Address;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class SellerRegistration {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sellerId;
     private String restaurantName;
     private String ownerName;
-    private String Type;
+    private String type;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name="address_id")
     private Address address;
+
     private String contactNumber;
     private String password;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getSellerId() {
         return sellerId;
     }
 
     public void setSellerId(Long sellerId) {
         this.sellerId = sellerId;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getRestaurantName() {
@@ -44,13 +54,12 @@ public class SellerRegistration {
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        this.type = type;
     }
-
     public String getContactNumber() {
         return contactNumber;
     }
